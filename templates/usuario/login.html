@@ -2,6 +2,10 @@
 {% block content %}
 {% load static %}
 
+{% if user.is_authenticated %}
+    <p>Estas logueado, {{user}}</p>
+    <a href="{% url 'index'%}"><button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="submit">VOLVER AL INICIO</button></a>
+{% else %}
 <div class="col-xs-12 col-sm-6 col-md-12" style="display: flex;
 align-items: center;
 flex-direction: column;
@@ -21,4 +25,5 @@ margin-top: 10rem;">
           </div>
     </form>
 </div>
-{% endblock %}s
+{% endif %}
+{% endblock %}

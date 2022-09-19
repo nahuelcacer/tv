@@ -9,6 +9,30 @@
     <title>Tv satelital</title>
 </head>
 <body>
+    <div>
+
+        {% if user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    
+                    </a>
+                    <ul class="dropdown-menu">
+                        <div class="container" style="width: 10rem;">
+                            <div class="row">
+                                <div class="col-2">
+                                    {{user}}
+                                    
+                                </div>
+                                <a href="{% url 'apps.usuario:logout' %}" class="btn btn-outline-secondary">cerrar sesion</a>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+        </nav>
+        {% endif %}
+    </div>
+
     {% block content %}
     {% if user.is_authenticated %}
     <div class="col-xs-12 col-sm-6 col-md-12" style="display: flex;
