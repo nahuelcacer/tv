@@ -10,6 +10,34 @@
 </head>
 <body>
     {% block content %}
+    {% if user.is_authenticated %}
+    <div class="col-xs-12 col-sm-6 col-md-12" style="display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin-top:30%;" >
+        <p>Bienvenido {{user}}</p>
+            <a href="{% url 'apps.clientes:add' %}">
+                <button class="btn btn-primary mb-4" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="button">AGREGAR CLIENTES</button>
+            </a>
+            <a href="{% url 'apps.clientes:listar' %}" style="text-decoration:none">
+                <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="button">VER CLIENTES</button>
+            </a>
+        </div>
+    {% else %}
+    <div class="col-xs-12 col-sm-6 col-md-12" style="display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top:30%;">
+        <h1 style="color:#D17901;margin:1rem;">TV GESTOR</h1>
+        <a href="{% url 'apps.usuario:login' %}" style="text-decoration:none;">
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="button">INGRESAR</button>
+            </div>
+        </a>
+    </div>
+    {% endif %}
     {% endblock %}
 </body>
 </html>

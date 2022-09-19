@@ -1,31 +1,24 @@
 {% extends 'index.html' %}
 {% block content %}
 {% load static %}
-<div class="row justify-content-center align-items-center minh-100">
-    <img class="m-4" height="80" src="{% static 'img\logos\uocra-sesion.svg' %}">
-    <fieldset class="p-4 col-md-3 mx-auto shadow mb-5 bg-white rounded ">
-        <div class="text-muted text-center m-4"><h5>Iniciar sesion</h5></div>
-        <form method="post" class="form-group">
-            {% csrf_token %}
-            <div class="mb-3">
-                <input class="form-control mt-2 p-2" name="username" placeholder="Nombre de usuario"></input>
-            </div>
-            <div class="mb-3">
-                <input type="password"class="form-control mt-2 p-2" name="password" placeholder="Contraseña"></input>
-            </div>
-                
-            <div class="mt-4 mb-4 d-grid gap-2">
-                <input class="btn btn-primary mt-4 mb-4" type="submit" value="Iniciar sesion">
-            </div>
-        </form>
-        <hr class="mt-4 mb-4"></hr>
-        <div>
-            <ul>
-                <li><a href="../addUsuario"  class="text-decoration-none">¿Aun no tienes cuenta? Registrate</a></li>
-                <li><a href="../addUsuario"  class="text-decoration-none">Olvide mi clave</a></li>
 
-            </ul>
+<div class="col-xs-12 col-sm-6 col-md-12" style="display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: center;
+margin-top: 10rem;">
+    <!-- <h4>Iniciar sesion.</h4> -->
+    <form action="" method="POST" class="form-group" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input class="form-control mt-2 p-2" name="username" placeholder="Nombre de usuario"></input>
         </div>
-    </fieldset>
+        <div class="mb-3">
+            <input type="password"class="form-control mt-2 p-2" name="password" placeholder="Contraseña"></input>
+        </div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="submit">INICIAR SESION</button>
+          </div>
+    </form>
 </div>
-{% endblock %}
+{% endblock %}s

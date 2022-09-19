@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load bootstrap3 %}
+    <div class="container">
+        {% for i in cliente %}
+            <div class="shadow bg-white rounded">
+                <p class="m-1 p-1">{{i.nombre}}</p>
+                <p class="m-1 p-1">{{i.fecha_de_alta}}</p>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}
