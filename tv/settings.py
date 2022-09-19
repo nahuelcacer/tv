@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-+lpytwfp!1krdaj@9#p+6%(txb%4vj8!oyzca#suah=bl=!a+%
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
+AUTH_USER_MODEL ='usuario.Usuario'
 # Application definition
 
 INSTALLED_APPS = [
@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.usuario'
 ]
 
 MIDDLEWARE = [
