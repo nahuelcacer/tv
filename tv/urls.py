@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',Index, name="index" ),
      path('usuario/', include('apps.usuario.urls')),
+     path('clientes/', include('apps.clientes.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
