@@ -1,5 +1,12 @@
 {% extends 'index.html' %}
 {% block content %}
-
-{{form}}
+{% load bootstrap3 %}
+    {% comment %} form to add clients {% endcomment %}
+    <div class="container">
+        <form  action="" method="POST" class="form-group" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input class="btn btn-primary mt-4" type="submit" value="Agregar cliente"
+        </form>
+    </div>
 {% endblock %}
