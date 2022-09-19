@@ -1,7 +1,12 @@
 from django import forms
 from .models import Cliente
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+    
 class Cliente(forms.ModelForm):
-    fecha_de_alta = forms.DateField()
+    fecha_de_alta = forms.DateField(widget=DateInput())
     class Meta:
         model = Cliente
         fields = ['nombre', 'telefono', 'direccion', 'fecha_de_alta']
