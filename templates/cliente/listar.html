@@ -3,10 +3,11 @@
 {% load bootstrap3 %}
     <div class="container">
         {% for i in cliente %}
-            <div class="shadow bg-white rounded">
-                <p class="m-1 p-1">{{i.nombre}}</p>
-                <p class="m-1 p-1">{{i.fecha_de_alta}}</p>
+        <a href="{% url 'apps.clientes:perfil' i.id %}" style="text-decoration:none;">
+            <div class="shadow bg-white" style="border-radius:0.5rem">
+                <p class="m-1 p-1">{{i.nombre}}</p>               
             </div>
+        </a>
 
         {% endfor %}
     </div>

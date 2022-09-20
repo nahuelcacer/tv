@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load bootstrap3 %}
+    <div class="container">
+        <p>{{cliente.nombre}}</p>
+        <p>{{cliente.telefono}}</p>
+        <p>{{cliente.direccion}}</p>
+        <p>{{cliente.usuario}}</p>
+        <p>{{cliente.fecha_de_alta}}</p>
+    </div>
+    <div class="container">
+        <p>Suscripciones</p>
+        {% for i in suscripciones %}
+
+            {{i.dia_fin}}  
+
+        {% endfor %}
+        <a href="{% url 'apps.clientes:susc' cliente.id %}">
+            <button class="btn btn-primary" value="Agregar suscripcion">Agregar suscripcion</button>
+        </a>
+    </div>
+{% endblock %}
