@@ -6,6 +6,16 @@ from apps.clientes.models import Cliente, Suscripcion
 from apps.clientes.forms import formCliente
 import datetime
 
+class Clientes():
+    def __init__(self,nombre,id,vencimiento):
+        self.nombre = nombre
+        self.id = id
+        self.vencimiento = vencimiento
+
+
+    def faltan(self):
+        return datetime.date.today() - self.vencimiento 
+    
 class addCliente(View):
     def get(self,request):
         form = formCliente()
@@ -24,17 +34,23 @@ class addCliente(View):
 
 class viewCliente(View):
     def get(self,request):
+        cliente_dic = []
+        # cliente_dic.fromkeys('nombre', 'id','vencimiento')
         cliente = Cliente.objects.all()
-        print(Cliente.objects.latest('fecha_de_alta').nombre)
+        for i in cliente:
+           cliente_dic.append(Clientes(i.nombre,i.id,Suscripcion.objects.filter(cliente=i).latest('dia_fin').dia_fin))
+
+            # arrCliente.append([Suscripcion.objects.filter(cliente=i).latest('dia_fin').dia_fin,i.nombre])
+        
         context = {
-            'cliente':cliente
+            'cliente':cliente_dic
         }   
         return render(request, 'cliente/listar.html', context)
 
 class perfilCliente(View):
     def get(self,request,id):
         cliente = Cliente.objects.get(id=id)
-        suscripciones = Suscripcion.objects.filter(id=id)
+        suscripciones = Suscripcion.objects.filter(cliente=cliente)
         context = {
             'cliente':cliente,
             'suscripciones':suscripciones
