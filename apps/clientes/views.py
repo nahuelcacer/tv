@@ -7,6 +7,7 @@ from apps.clientes.forms import formCliente
 import datetime
 
 class Clientes():
+    """Crea objeto de clientes para enviar en el context"""
     def __init__(self,nombre,id,vencimiento):
         self.nombre = nombre
         self.id = id
@@ -14,7 +15,10 @@ class Clientes():
 
 
     def faltan(self):
-        return datetime.date.today() - self.vencimiento 
+        if self.vencimiento != 0:
+            return datetime.date.today() - self.vencimiento 
+        else:
+            return "Sin suscripcion"
     
 class addCliente(View):
     def get(self,request):
@@ -33,15 +37,15 @@ class addCliente(View):
                 return redirect('apps.usuario:login',)  
 
 class viewCliente(View):
+    """Clase para listar clientes"""
     def get(self,request):
         cliente_dic = []
-        # cliente_dic.fromkeys('nombre', 'id','vencimiento')
         cliente = Cliente.objects.all()
         for i in cliente:
-           cliente_dic.append(Clientes(i.nombre,i.id,Suscripcion.objects.filter(cliente=i).latest('dia_fin').dia_fin))
-
-            # arrCliente.append([Suscripcion.objects.filter(cliente=i).latest('dia_fin').dia_fin,i.nombre])
-        
+            if Suscripcion.objects.filter(cliente=i).count() > 0:
+                cliente_dic.append(Clientes(i.nombre,i.id,Suscripcion.objects.filter(cliente=i).latest('dia_fin').dia_fin))
+            else:
+                cliente_dic.append(Clientes(i.nombre,i.id,0))
         context = {
             'cliente':cliente_dic
         }   
