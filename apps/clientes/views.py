@@ -16,10 +16,17 @@ class Clientes():
 
     def faltan(self):
         if self.vencimiento != 0:
-            return datetime.date.today() - self.vencimiento 
+            venc = self.vencimiento - datetime.date.today()  
+            return int(venc.days)
         else:
             return "Sin suscripcion"
-    
+    def p_vencimiento(self):
+        """Fecha transformada a str"""
+        if self.vencimiento != 0:
+            return self.vencimiento.strftime('%d/%m/%Y')
+        else: 
+            return ""
+
 class addCliente(View):
     def get(self,request):
         form = formCliente()

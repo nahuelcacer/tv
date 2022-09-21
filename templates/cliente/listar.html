@@ -2,13 +2,22 @@
 {% block content %}
 {% load bootstrap3 %}
     <div class="container">
+        <div style="padding: 0.5rem;margin:0.5rem">
+
+            <div class="row">
+                <div class="col">Nombre</div>
+                <div class="col">Fecha de vencimiento</div>
+                <div class="col">Dias faltantes</div>
+            </div>
+        </div>
         {% for i in cliente %}
         <a href="{% url 'apps.clientes:perfil' i.id %}" style="text-decoration:none;color:black">
             <div class="shadow bg-white" style="border-radius:0.5rem; margin:0.5rem; padding:0.5rem">
                 <div class="row">
                     <div class="col">{{i.nombre}}</div>
-                    <div class="col p-0">{{i.vencimiento}}</div>
-                    <div class="col">{{i.faltan}}</div>
+                    <div class="col p-0">{{i.p_vencimiento}}</div>
+                    <div class="col"> {{i.faltan}} </div>
+                           
                 </div>
 
                 {% comment %} <p class="m-1 " style="color:black;">{{i.nombre}}</p>     
