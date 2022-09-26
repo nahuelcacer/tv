@@ -18,6 +18,7 @@ class Suscripcion(models.Model):
     dia_comienzo = models.DateField(null=True)
     dia_fin = models.DateField(null=True)
     cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE,null=True)
+    register = models.DateTimeField(auto_now=True, null=True)
 
     
         

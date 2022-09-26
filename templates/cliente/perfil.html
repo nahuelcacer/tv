@@ -3,20 +3,44 @@
 {% load bootstrap3 %}
     <div class="container">
         <p>{{cliente.nombre}}</p>
-        <p>{{cliente.telefono}}</p>
+        <a href="tel:{{cliente.telefono}}"><p>{{cliente.telefono}}</p></a>
         <p>{{cliente.direccion}}</p>
         <p>{{cliente.usuario}}</p>
-        <p>{{cliente.fecha_de_alta}}</p>
     </div>
     <div class="container">
-        <p>Suscripciones</p>
-        {% for i in suscripciones %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Suscripciones
+                </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <a href="{% url 'apps.clientes:susc' cliente.id %}">
+                        <button class="btn btn-primary m-2" value="Agregar suscripcion">Agregar</button>
+                    </a>
+                    <div class="accordion-body">
+                        {% for i in suscripciones %}
+                        <div class="row mb-1" style="justify-content: center;
+                        align-items: center;
+                        text-align: center;">
+                            <div class="col">
+                                {{i.dia_fin}}
+                            </div>
+                            <div class="col">
 
-            {{i.dia_fin}}  
+                                <a href="{% url 'apps.clientes:remove' i.id %}">
+                                    <button class="btn btn-outline-danger p-1">Eliminar</button>
+                                </a>
+                            </div>
+                            
+                        </div>
+                        {%endfor%}
 
-        {% endfor %}
-        <a href="{% url 'apps.clientes:susc' cliente.id %}">
-            <button class="btn btn-primary" value="Agregar suscripcion">Agregar suscripcion</button>
-        </a>
+                    </div>
+                  </div>
+            </div>
+         </div>
+        
     </div>
 {% endblock %}
