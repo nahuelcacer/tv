@@ -1,5 +1,6 @@
 from datetime import date, datetime
 from multiprocessing import context
+from operator import attrgetter
 from django.shortcuts import render, redirect
 from django.views import View
 from apps.clientes.models import Cliente, Suscripcion
@@ -53,6 +54,9 @@ class viewCliente(View):
                 cliente_dic.append(Clientes(i.nombre,i.id,Suscripcion.objects.filter(cliente=i).latest('dia_fin').dia_fin))
             else:
                 cliente_dic.append(Clientes(i.nombre,i.id,0))
+        # ordena lista de objetos
+        cliente_dic.sort(key=attrgetter('vencimiento'))
+        
         context = {
             'cliente':cliente_dic
         }   
