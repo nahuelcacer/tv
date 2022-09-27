@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+{% block content %}
+    <div class="container-md">
+        <h4 style="color:#D17901">Gestionar servicios</h4>
+        {% if servicios %}
+            {% for i in servicios %}
+                <a href="{% url 'apps.servicio:ver' i.id %}" style="text-decoration: none; color: black;">
+                    <div class="shadow bg-white" style="border-radius:0.5rem; margin:0.5rem; padding:0.5rem">
+                        {{i.nombre}}
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a href="{% url 'apps.servicio:add'  %}">
+            <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto;margin-top: 2rem;">Agregar</button>
+        </a>
+    </div>
+{% endblock %}
