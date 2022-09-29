@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+{% block content %}
+    <div class="container-md">
+        {% if servicio %}
+        <div class="row">
+            <div class="d-flex gap-2 col">
+                <h1>{{servicio.nombre}}</h1>
+            </div>
+            
+          </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

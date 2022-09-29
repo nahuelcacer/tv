@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from .forms import FormServicio
-from .queries import allServicio
+from .queries import allServicio, idServicio
 # Create your views here.
 
 class ViewServicio(View):
@@ -26,3 +26,11 @@ def MainServicio(request):
         'servicios':servicios
     }
     return render(request,'servicio/main.html', context)
+
+def IdServicio(request,id):
+    servicio = idServicio(id)
+    context = {
+        'servicio': servicio
+    }
+    return render(request, 'servicio/ver.html', context)
+

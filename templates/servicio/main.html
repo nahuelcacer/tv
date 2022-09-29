@@ -12,8 +12,12 @@
                 </a>
             {% endfor %}
         {% endif %}
-        <a href="{% url 'apps.servicio:add'  %}">
-            <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto;margin-top: 2rem;">Agregar</button>
+        <a href="{% url 'apps.servicio:add'  %}" style="text-decoration: none;">
+            <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto;margin-top: 2rem;">AGREGAR SERVICIO</button>
+        </a>
+        <a style="text-decoration: none;">
+
+            <button class="btn btn-primary" style="border-color:grey;background-color: grey ;font-family:Roboto;margin-top: 2rem;">AGREGAR PLAN</button>
         </a>
     </div>
 {% endblock %}
