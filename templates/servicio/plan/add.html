@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load bootstrap3 %}
+
+<div class="container-md">
+    <h4 style="color:#D17901">AGREGAR CLIENTE</h4>
+    <form  action="" method="POST" class="form-group" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="row">
+            <div class="d-flex gap-2 col">
+                <button class="btn btn-outline-secondary" style="font-family:Roboto;margin-top: 2rem;" type="button">
+                    <a href="{% url 'apps.servicio:main' %}" style="text-decoration: none; color:grey;">VOLVER</a>
+                </button>
+                <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto;margin-top: 2rem;" type="submit">AGREGAR</button>
+            </div>
+            
+          </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.MainServicio ,name="main"),
     path('add/', ViewServicio.as_view(), name="add"),
     path('ver/<int:id>', views.IdServicio , name="ver"),
+    path('ver/<int:id>/addplan', views.addplan , name="add"),
 
     # path('ver/<int:id>',name="ver")
 
