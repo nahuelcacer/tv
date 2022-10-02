@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views import View
+from apps.servicio.models import Plan
 from .forms import FormServicio, FormPlan
 from .queries import allServicio, idServicio
 # Create your views here.
@@ -29,16 +30,27 @@ def MainServicio(request):
 
 def IdServicio(request,id):
     servicio = idServicio(id)
+    plan = Plan.objects.filter(servicio=servicio)
     context = {
-        'servicio': servicio
+        'servicio': servicio,
+        'plan':plan
     }
     return render(request, 'servicio/ver.html', context)
 
 def addplan(request,id):
     servicio = idServicio(id)
-    form = FormPlan()
+    form = FormPlan(request.POST)
     context = {
         'form':form,
         'servicio':servicio
+
     }
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            aux = form.save(commit=False)
+            aux.servicio = servicio
+            aux.save()
+
+
     return render(request, 'servicio/plan/add.html',context)

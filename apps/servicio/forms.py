@@ -15,4 +15,4 @@ class FormServicio(forms.ModelForm):
 class FormPlan(forms.ModelForm):
     class Meta:
         model = Plan
-        fields = '__all__'
+        fields = ['nombre','precio','descripcion']
