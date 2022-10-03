@@ -41,12 +41,16 @@
         justify-content: center;
         margin-top:30%;" >
         <p>Bienvenido {{user}}</p>
+            <a href="{% url 'apps.servicio:main' %}" style="text-decoration:none">
+                <button class="btn btn-primary mb-4" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="button">SERVICIOS</button>
+            </a>
             <a href="{% url 'apps.clientes:add' %}">
                 <button class="btn btn-primary mb-4" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="button">AGREGAR CLIENTES</button>
             </a>
             <a href="{% url 'apps.clientes:listar' %}" style="text-decoration:none">
                 <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto" type="button">VER CLIENTES</button>
             </a>
+            
         </div>
     {% else %}
     <div class="col-xs-12 col-sm-6 col-md-12" style="display: flex;
