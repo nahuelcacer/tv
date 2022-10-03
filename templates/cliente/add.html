@@ -6,6 +6,7 @@
         <h4 style="color:#D17901">AGREGAR CLIENTE</h4>
         <form  action="" method="POST" class="form-group" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.media.js }}
             {% bootstrap_form form %}
             <div class="d-grid gap-2">
                 <button class="btn btn-primary" style="border-color:#D17901;background-color:#D17901;font-family:Roboto;margin-top: 2rem;" type="submit">AGREGAR</button>
