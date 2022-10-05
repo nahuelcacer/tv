@@ -19,12 +19,14 @@
                       <th>Nombre</th>
                       <th>Precio</th>
                       <th>Desc</th>
+                      <th>*</th>
                   </tr>
                   {% for i in plan %}
                   <tr>
                       <td>{{i.nombre}}</td>
                       <td>{{i.precio}}</td>
                       <td>{{i.descripcion}}</td>
+                      <td><a href="{% url 'apps.servicio:editplan' i.id %}"><button class="btn btn-primary">Editar</button></a></td>
                   </tr>
                 {%endfor%}
               </table>

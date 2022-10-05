@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from apps.servicio.models import Plan
+from django.views.generic import UpdateView
 from .forms import FormServicio, FormPlan
-from .queries import allServicio, idServicio
+from .queries import allServicio, idServicio, idPlan
 # Create your views here.
 
 class ViewServicio(View):
@@ -54,3 +55,10 @@ def addplan(request,id):
 
 
     return render(request, 'servicio/plan/add.html',context)
+
+class UpdatePlan(UpdateView):
+    model = Plan
+    form_class = FormPlan
+    template_name=  'servicio/plan/edit.html'
+    # fields = ['nombre','precio','descripcion']
+

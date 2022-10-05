@@ -10,3 +10,9 @@ def idServicio(id):
     except ObjectDoesNotExist:
         return { 'nombre': 'No existe'}
 
+def idPlan(id):
+    try:
+        return Plan.objects.get(id=id)
+
+    except ObjectDoesNotExist:
+        return { 'nombre': 'No existe'}

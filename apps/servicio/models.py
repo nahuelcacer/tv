@@ -1,5 +1,6 @@
 from pyexpat import model
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -19,3 +20,6 @@ class Plan(models.Model):
     
     def __str__(self):
         return f'{self.nombre} - {self.precio}' 
+    
+    def get_absolute_url(self):
+        return reverse('apps.servicio:main')
