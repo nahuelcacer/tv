@@ -6,41 +6,45 @@
         <a href="tel:{{cliente.telefono}}"><p>{{cliente.telefono}}</p></a>
         <p>{{cliente.direccion}}</p>
         <p>{{cliente.usuario}}</p>
+        {% if cliente.suscripcion %}
+            <p>Activo</p>
+        {% else %}
+            <p>Inactivo</p>
+        {% endif %}
+        {% comment %} <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        </div> {% endcomment %}
     </div>
     <div class="container">
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Suscripciones
-                </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <a href="{% url 'apps.clientes:susc' cliente.id %}">
-                        <button class="btn btn-primary m-2" value="Agregar suscripcion">Agregar</button>
-                    </a>
-                    <div class="accordion-body">
-                        {% for i in suscripciones %}
-                        <div class="row mb-1" style="justify-content: center;
-                        align-items: center;
-                        text-align: center;">
-                            <div class="col">
-                                {{i.dia_fin}}
-                            </div>
-                            <div class="col">
-
-                                <a href="{% url 'apps.clientes:remove' i.id %}">
-                                    <button class="btn btn-outline-danger p-1">Eliminar</button>
-                                </a>
-                            </div>
-                            
-                        </div>
-                        {%endfor%}
-
-                    </div>
-                  </div>
-            </div>
-         </div>
+    <div>
+        <a href='{% url 'apps.pagos:add' cliente.id %}' class="btn btn-primary m-0">AGREGAR PAGO</a>    
+        <div class="modal fade" id="addpaymodal" role="dialog"></div>
         
     </div>
+    <table class="table">
+            <tr>
+                <th>Periodo</th>
+                <th>Pago</th>
+                <th>Saldo</th>
+                <th>*</th>
+            </tr>
+        {% for i in pagos%}
+            <tr>
+                {%if i.saldo == 0 or i.saldo < 0 %}
+                    <td style="color:green">{{i.periodo__nombre}}</td>
+                {% else %}
+                    <td style="color:red">{{i.periodo__nombre}}</td>
+                {% endif %}
+                <td>{{i.importe__sum}}</td>
+                <td>{{i.saldo}}</td>
+                <td>
+                    <a href='{% url 'apps.pagos:listar' cliente.id i.periodo__nombre  %}' class="btn btn-secondary">Ver pagos</a>    
+                </td
+
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+   
+    
 {% endblock %}

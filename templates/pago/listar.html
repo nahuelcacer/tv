@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load bootstrap3 %}
+    <div class="container">
+        <!---CLIENTE -->
+        <div>
+            {{cliente.nombre}}
+        </div>
+        <!---PERIODO  -->
+        <div class="row" style="margin-top:2rem; margin-bottom:2rem">
+            <div class="col">
+                <div class="text-secondary"><b>PERIODO</b></div>
+                <div>{{periodo.nombre}}</div>
+            </div>               
+            <div class="col">
+                <div class="text-secondary"><b>VENCIMIENTO</b></div>
+                <div>{{periodo.fin}}</div>
+            </div>        
+           
+
+        </div>
+        <!---PAGOS  -->
+        <div>
+            <table class="table">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Importe</th>
+                    <th>Saldo</th>
+                </tr>
+                {% for i in pagos %}
+                    <tr>
+                        <td>{{i.fecha}}</td>
+                        <td>{{i.importe}}</td>
+                        <td>{{i.saldo}}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

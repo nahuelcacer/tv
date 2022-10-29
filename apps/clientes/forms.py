@@ -1,6 +1,5 @@
 from django import forms
 from .models import Cliente
-from apps.servicio.models import Plan,Servicio
 
 class DateInput(forms.DateInput):
     input_type = 'date'

@@ -1,10 +1,9 @@
-from cProfile import label
-from pyexpat import model
+from email.policy import default
 from django.db import models
 from datetime import date
 from apps.servicio.models import Servicio,Plan
 from smart_selects.db_fields import ChainedForeignKey
-
+from django.urls import reverse
 
 # Create your models here.
 
@@ -24,15 +23,16 @@ class Cliente(models.Model):
         sort=True,
         null=True
     )
+    suscripcion = models.BooleanField(default=False)
 
     def dias_faltantes(self):
         return self.fecha_de_alta - date.today()
 
-class Suscripcion(models.Model):
-    dia_comienzo = models.DateField(null=True)
-    dia_fin = models.DateField(null=True)
-    cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE,null=True)
-    register = models.DateTimeField(auto_now=True, null=True)
+    def get_absolute_url(self):
+        return reverse("apps.clientes:perfil", kwargs={"id": self.id})
+    
+
+
 
     
     
