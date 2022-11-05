@@ -10,5 +10,5 @@ def Index(request):
 
 def Serve(request):
     from django.views.static import serve
-    filepath = 'static/tv_channels_raul1.m3u'
+    filepath = 'us.m3u'
     return serve(request, os.path.basename(filepath), os.path.dirname(filepath))
